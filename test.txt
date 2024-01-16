@@ -1,0 +1,433 @@
+-
+Max Rank: 9
+Treewidth: 8
+# Sliced: 0
+# Network Slices: 1
+Estimated Memory: 2304.0
+Estimated FLOPs: 98120.0
+Construction Time: 0.0016198158264160156
+Tree Time: 0.01812005043029785
+Contraction Time: 0.013378620147705078
+-
+Total Time: 0.03312373161315918
+Count: 2.0
+-
+Max Rank: 9
+Treewidth: 8
+# Sliced: 0
+# Network Slices: 1
+Estimated Memory: 2304.0
+Estimated FLOPs: 98120.0
+Construction Time: 0.001020193099975586
+Tree Time: 0.013771295547485352
+Contraction Time: 0.010396003723144531
+-
+Total Time: 0.02519369125366211
+Count: 2.0
+-
+Max Rank: 9
+Treewidth: 8
+# Sliced: 0
+# Network Slices: 1
+Estimated Memory: 2304.0
+Estimated FLOPs: 98120.0
+Construction Time: 0.0011615753173828125
+Tree Time: 0.012652158737182617
+Contraction Time: 0.008797407150268555
+-
+Total Time: 0.02261638641357422
+Count: 2.0
+-
+Max Rank: 9
+Treewidth: 8
+# Sliced: 0
+# Network Slices: 1
+Estimated Memory: 2304.0
+Estimated FLOPs: 98120.0
+Construction Time: 0.0014057159423828125
+Tree Time: 0.014170408248901367
+Contraction Time: 0.014093160629272461
+-
+Total Time: 0.029674530029296875
+Count: 2.0
+-
+Total Time: 0.02148723602294922
+Count: 2.0
+Total Time: 0.023598432540893555
+Count: 2.0
+-
+Max Rank: 9
+Treewidth: 8
+# Sliced: 0
+# Network Slices: 1
+Estimated Memory: 2304.0
+Estimated FLOPs: 98120.0
+Construction Time: 0.0011551380157470703
+Tree Time: 0.014936685562133789
+Contraction Time: 0.013489484786987305
+-
+Total Time: 0.029587507247924805
+Count: 2.0
+-
+Max Rank: 9
+Treewidth: 8
+# Sliced: 0
+# Network Slices: 1
+Estimated Memory: 2304.0
+Estimated FLOPs: 98120.0
+Construction Time: 0.0012891292572021484
+Tree Time: 0.01354837417602539
+Contraction Time: 0.012621641159057617
+-
+Total Time: 0.027464866638183594
+Count: 2.0
+-
+Max Rank: 9
+Treewidth: 8
+# Sliced: 0
+# Network Slices: 1
+Estimated Memory: 2304.0
+Estimated FLOPs: 98120.0
+Construction Time: 0.0017316341400146484
+Tree Time: 0.023578166961669922
+Contraction Time: 0.035238027572631836
+-
+Total Time: 0.06055855751037598
+Count: 2.0
+-
+Max Rank: 9
+Treewidth: 8
+# Sliced: 0
+# Network Slices: 1
+Estimated Memory: 2304.0
+Estimated FLOPs: 98120.0
+Construction Time: 0.0016481876373291016
+Tree Time: 0.013936281204223633
+Contraction Time: 0.010056495666503906
+-
+Total Time: 0.02564692497253418
+Count: 2.0
+-
+Max Rank: 9
+Treewidth: 8
+# Sliced: 0
+# Network Slices: 1
+Estimated Memory: 2304.0
+Estimated FLOPs: 98120.0
+Construction Time: 0.0010020732879638672
+Tree Time: 0.01605510711669922
+Contraction Time: 0.017744064331054688
+-
+Total Time: 0.03480648994445801
+Count: 2.0
+-
+Max Rank: 9
+Treewidth: 8
+# Sliced: 0
+# Network Slices: 1
+Estimated Memory: 2304.0
+Estimated FLOPs: 98120.0
+Construction Time: 0.0013422966003417969
+Tree Time: 0.01945042610168457
+Contraction Time: 0.027759790420532227
+-
+Total Time: 0.04855942726135254
+Count: 2.0
+-
+Max Rank: 9
+Treewidth: 8
+# Sliced: 0
+# Network Slices: 1
+Estimated Memory: 2304.0
+Estimated FLOPs: 98120.0
+Construction Time: 0.002412557601928711
+Tree Time: 0.02220630645751953
+Contraction Time: 0.015417337417602539
+-
+Total Time: 0.04004383087158203
+Count: 2.0
+-
+Max Rank: 9
+Treewidth: 8
+# Sliced: 0
+# Network Slices: 1
+Estimated Memory: 2304.0
+Estimated FLOPs: 98120.0
+Construction Time: 0.0018565654754638672
+Tree Time: 0.015982866287231445
+Contraction Time: 0.027120590209960938
+-
+Total Time: 0.044965267181396484
+Count: 2.0
+-
+Max Rank: 9
+Treewidth: 8
+# Sliced: 0
+# Network Slices: 1
+Estimated Memory: 2304.0
+Estimated FLOPs: 98120.0
+Construction Time: 0.0011353492736816406
+Tree Time: 0.0218656063079834
+Contraction Time: 0.01964712142944336
+-
+Total Time: 0.04265451431274414
+Count: 2.0
+-
+Max Rank: 9
+Treewidth: 8
+# Sliced: 0
+# Network Slices: 1
+Estimated Memory: 2304.0
+Estimated FLOPs: 98120.0
+Construction Time: 0.0016353130340576172
+Tree Time: 0.014832735061645508
+Contraction Time: 0.009971857070922852
+-
+Total Time: 0.02644634246826172
+Count: 2.0
+-
+Max Rank: 9
+Treewidth: 8
+# Sliced: 0
+# Network Slices: 1
+Estimated Memory: 2304.0
+Estimated FLOPs: 98120.0
+Construction Time: 0.0012400150299072266
+Tree Time: 0.013727426528930664
+Contraction Time: 0.012094974517822266
+-
+Total Time: 0.027068376541137695
+Count: 2.0
+-
+Max Rank: 9
+Treewidth: 8
+# Sliced: 0
+# Network Slices: 1
+Estimated Memory: 2304.0
+Estimated FLOPs: 98120.0
+Construction Time: 0.0011796951293945312
+Tree Time: 0.014406919479370117
+Contraction Time: 0.02466416358947754
+-
+Total Time: 0.04026055335998535
+Count: 2.0
+-
+Max Rank: 9
+Treewidth: 8
+# Sliced: 0
+# Network Slices: 1
+Estimated Memory: 2304.0
+Estimated FLOPs: 98120.0
+Construction Time: 0.0037779808044433594
+Tree Time: 0.022040843963623047
+Contraction Time: 0.011516571044921875
+-
+Total Time: 0.03734302520751953
+Count: 2.0
+-
+Max Rank: 9
+Treewidth: 8
+# Sliced: 0
+# Network Slices: 1
+Estimated Memory: 2304.0
+Estimated FLOPs: 98120.0
+Construction Time: 0.0014560222625732422
+Tree Time: 0.024903297424316406
+Contraction Time: 0.011130571365356445
+-
+Total Time: 0.037496328353881836
+Count: 2.0
+Plans tested: 1
+-
+Max Rank: 13
+Treewidth: 10
+# Sliced: 0
+# Network Slices: 1
+Estimated Memory: 40960.0
+Estimated FLOPs: 1174792.0
+Construction Time: 0.0017828941345214844
+Tree Time: 0.016181468963623047
+Contraction Time: 0.039089202880859375
+-
+Total Time: 0.05706071853637695
+Count: 2.0
+Plans tested: 1
+-
+Max Rank: 13
+Treewidth: 10
+# Sliced: 0
+# Network Slices: 1
+Estimated Memory: 40960.0
+Estimated FLOPs: 1174792.0
+Construction Time: 0.0015664100646972656
+Tree Time: 0.027887821197509766
+Contraction Time: 0.08152031898498535
+-
+Total Time: 0.11098456382751465
+Count: 2.0
+Plans tested: 1
+Times sliced: 1
+-
+Max Rank: 14
+Treewidth: 11
+# Sliced: 0
+# Network Slices: 1
+Estimated Memory: 57344.0
+Estimated FLOPs: 2667784.0
+Construction Time: 0.0031261444091796875
+Tree Time: 0.0326540470123291
+Contraction Time: 0.08925080299377441
+-
+Total Time: 0.12504005432128906
+Count: 13.0
+Plans tested: 1
+Times sliced: 1
+-
+Max Rank: 14
+Treewidth: 11
+# Sliced: 0
+# Network Slices: 1
+Estimated Memory: 57344.0
+Estimated FLOPs: 2667784.0
+Construction Time: 0.002923727035522461
+Tree Time: 0.017026424407958984
+Contraction Time: 0.042227745056152344
+-
+Total Time: 0.06218457221984863
+Count: 13.0
+Plans tested: 1
+Times sliced: 1
+-
+Max Rank: 14
+Treewidth: 11
+# Sliced: 0
+# Network Slices: 1
+Estimated Memory: 57344.0
+Estimated FLOPs: 2667784.0
+Construction Time: 0.0018155574798583984
+Tree Time: 0.018451452255249023
+Contraction Time: 0.042646169662475586
+-
+Total Time: 0.06291985511779785
+Count: 13.0
+Plans tested: 1
+Times sliced: 1
+-
+Max Rank: 14
+Treewidth: 11
+# Sliced: 0
+# Network Slices: 1
+Estimated Memory: 57344.0
+Estimated FLOPs: 2667784.0
+Construction Time: 0.012434720993041992
+Tree Time: 0.030376434326171875
+Contraction Time: 0.05110335350036621
+-
+Total Time: 0.09392881393432617
+Count: 13.0
+Plans tested: 1
+Times sliced: 1
+-
+Max Rank: 14
+Treewidth: 11
+# Sliced: 0
+# Network Slices: 1
+Estimated Memory: 57344.0
+Estimated FLOPs: 2667784.0
+Construction Time: 0.004198312759399414
+Tree Time: 0.021424531936645508
+Contraction Time: 0.04103899002075195
+-
+Total Time: 0.06666898727416992
+Count: 13.0
+Plans tested: 1
+Times sliced: 1
+-
+Max Rank: 14
+Treewidth: 11
+# Sliced: 0
+# Network Slices: 1
+Estimated Memory: 57344.0
+Estimated FLOPs: 2667784.0
+Construction Time: 0.0062673091888427734
+Tree Time: 0.03962969779968262
+Contraction Time: 0.06571078300476074
+-
+Total Time: 0.11161398887634277
+Count: 13.0
+Plans tested: 1
+Times sliced: 1
+-
+Max Rank: 14
+Treewidth: 11
+# Sliced: 0
+# Network Slices: 1
+Estimated Memory: 57344.0
+Estimated FLOPs: 2667784.0
+Construction Time: 0.3997511863708496
+Tree Time: 0.018703460693359375
+Contraction Time: 0.040758609771728516
+-
+Total Time: 0.45921921730041504
+Count: 13.0
+Plans tested: 1
+Times sliced: 1
+-
+Max Rank: 14
+Treewidth: 11
+# Sliced: 0
+# Network Slices: 1
+Estimated Memory: 57344.0
+Estimated FLOPs: 2667784.0
+Construction Time: 0.0036771297454833984
+Tree Time: 0.01580214500427246
+Contraction Time: 0.08217477798461914
+-
+Total Time: 0.10166621208190918
+Count: 13.0
+Plans tested: 1
+Times sliced: 1
+-
+Max Rank: 14
+Treewidth: 11
+# Sliced: 0
+# Network Slices: 1
+Estimated Memory: 57344.0
+Estimated FLOPs: 2667784.0
+Construction Time: 0.004679679870605469
+Tree Time: 0.02530217170715332
+Contraction Time: 0.0918416976928711
+-
+Total Time: 0.12183308601379395
+Count: 13.0
+Plans tested: 1
+-
+Max Rank: 14
+Treewidth: 11
+# Sliced: 0
+# Network Slices: 1
+Estimated Memory: 57344.0
+Estimated FLOPs: 2667784.0
+Construction Time: 0.0065326690673828125
+Tree Time: 0.021513938903808594
+Contraction Time: 0.036872148513793945
+-
+Total Time: 0.06492733955383301
+Count: 13.0
+Plans tested: 1
+Times sliced: 1
+-
+Max Rank: 18
+Treewidth: 13
+# Sliced: 0
+# Network Slices: 1
+Estimated Memory: 917504.0
+Estimated FLOPs: 81703784.0
+Construction Time: 0.005178213119506836
+Tree Time: 0.019985437393188477
+Contraction Time: 0.17565011978149414
+-
+Total Time: 0.2008209228515625
+Count: 9.0
+Plans tested: 1
+Times sliced: 1

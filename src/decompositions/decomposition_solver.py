@@ -10,6 +10,7 @@ class DecompositionSolver:
         self.__argument_map = argument_map
 
     def generate_decompositions(self, write_graph, solver_parameters, timer):
+        util.log("Here1")
         with tempfile.NamedTemporaryFile() as input_file:
             write_graph(input_file)
             input_file.flush()
@@ -38,6 +39,7 @@ class DecompositionSolver:
             buffered_stream = util.BufferedStream(process.stdout, timer)
             try:
                 while True:
+                    util.log("Whe")
                     result = parse_decomposition(buffered_stream)
                     if result is None:
                         break

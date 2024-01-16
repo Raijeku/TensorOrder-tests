@@ -211,7 +211,7 @@ def run(
         tensor_library.add_argument("ensure_small", jax_ensure_small)
     if not jax_oneshot:
         tensor_library.add_argument("oneshot", jax_oneshot)
-    if jax_tensordot is not "tensordot":
+    if jax_tensordot != "tensordot":
         tensor_library.add_argument("tensordot", jax_tensordot)
     if tpu is not None and len(tpu) > 0:
         tensor_library.add_argument("TPU", tpu)
@@ -229,6 +229,9 @@ def run(
 
     # Reduction phase: Construct the tensor network
     network = reduction(benchmark, weights)
+    util.log(dir(network))
+    for edge in network.edges:
+        util.log(edge)
     util.log("Completed reduction to tensor network", util.Verbosity.stages)
     stopwatch.record_interval("Construction")
 
@@ -238,7 +241,7 @@ def run(
     with util.TimeoutTimer(planner_timeout) as timer:
         # Planning phase: find the execution plan to use
         #   (see tensor_network/sliced_execution_plan.py)
-        plan, _ = planning.run(
+        plan, _, plans_tested = planning.run(
             planner,
             network,
             seed,
@@ -274,7 +277,7 @@ def run(
                     plan.contract_small(
                         early, tensor_network.ALL_APIS["numpy"](),
                     )
-                result = execution.run(plan, tensor_library, slicer, slice_cutoff)
+                result, times_sliced = execution.run(plan, tensor_library, slicer, slice_cutoff)
                 stopwatch.record_interval("Contraction")
             except:
                 util.output_pair(
@@ -297,6 +300,10 @@ def run(
     stopwatch.report_times()
     if result is not None:
         util.output_pair("Count", result, util.Verbosity.always)
+    util.output_pair("Plans tested", plans_tested, util.Verbosity.always)
+    util.output_pair("Times sliced", times_sliced, util.Verbosity.always)
+    util.log("Lol", util.Verbosity.always)
+
 
 
 if __name__ == "__main__":

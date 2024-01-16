@@ -8,9 +8,13 @@ RUN apt-get clean \
 && mv lists lists.old \
 && mkdir -p lists/partial \
 && apt-get update \
+&& apt-get -y install software-properties-common python3-launchpadlib \
+&& apt-get update \
+&& add-apt-repository ppa:openjdk-r/ppa \
+&& apt-get update \
 && apt-get upgrade -y \
 && mkdir -p /usr/share/man/man1 \
-&& apt-get -y install g++ make libxml2-dev zlib1g-dev cmake openjdk-11-jdk libopenblas-dev \
+&& apt-get -y install openjdk-17-jdk g++ make libxml2-dev zlib1g-dev cmake libopenblas-dev \
 && cd /solvers/ \
 && tar -xvf metis-5.1.0.tar.gz \
 && rm metis-5.1.0.tar.gz \
@@ -18,7 +22,7 @@ RUN apt-get clean \
 && make config shared=1 \
 && make \
 && make install \
-&& pip install click numpy python-igraph networkx==2.1.0 metis turbine cython threadpoolctl jax jaxlib
+&& pip install click numpy python-igraph networkx==2.1.0 metis turbine cython threadpoolctl jax 
 
 COPY solvers/htd-master /solvers/htd-master
 RUN cd /solvers/htd-master \

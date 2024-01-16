@@ -130,8 +130,10 @@ def run(plan, tensor_library, slicer, slice_cutoff):
     :return: The contraction of the tensor network, or None
     """
     result = None
+    times_sliced = 0
     try:
         while True:
+            times_sliced += 1
             try:
                 result = tensor_library.contract_sliced(
                     plan, num_slice_limit=slice_cutoff
@@ -149,7 +151,7 @@ def run(plan, tensor_library, slicer, slice_cutoff):
     except:
         util.log(traceback.format_exc(), util.Verbosity.always)
         util.output_pair("Error", "Exception during execution", util.Verbosity.always)
-    return result
+    return result, times_sliced
 
 
 if __name__ == "__main__":

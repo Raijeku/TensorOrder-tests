@@ -84,7 +84,7 @@ def measure(
 
     full_log = []  # Log all decompositions
     with util.TimeoutTimer(timeout) as timer:
-        best_plan, plan_log = run(
+        best_plan, plan_log, plans_tested = run(
             planner,
             network,
             seed,
@@ -145,6 +145,7 @@ def run(
     """
     best_plan = None
     log = []
+    plans_tested = 0
 
     try:
         # Continue the search for a new contraction tree until we have spent more than half of the estimated total
@@ -152,6 +153,7 @@ def run(
         for tree, factored_network in planner.generate_contraction_trees(
             network, timer, seed=seed, affinity=planner_affinity
         ):
+            plans_tested += 1
             util.log(
                 "Found tree of max-rank " + str(tree.maxrank), util.Verbosity.progress
             )
@@ -191,7 +193,7 @@ def run(
         util.output_pair("Error", "Exception during execution", util.Verbosity.always)
 
     # Use the best tree that we have found so far
-    return best_plan, log
+    return best_plan, log, plans_tested
 
 
 if __name__ == "__main__":
