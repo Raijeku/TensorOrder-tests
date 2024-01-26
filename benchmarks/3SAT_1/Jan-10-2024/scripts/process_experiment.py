@@ -6,12 +6,13 @@ from scipy.optimize import curve_fit
 
 data = []
 
-f = open('result.txt', 'r')
+f = open('../results/result.txt', 'r')
 lines = f.readlines()
 for i, line in enumerate(lines):
     if i % 15 == 0:
+        print('line', line)
         filename = line.strip()
-        f = open('./CNF/'+filename)
+        f = open('../finished_CNF/'+filename)
         f_lines = f.readlines()
         stripped_line = f_lines[0].strip().split(' ')
         nodes = int(stripped_line[2])
@@ -34,11 +35,11 @@ for i, line in enumerate(lines):
 
 df = pd.DataFrame(data)
 df.to_csv('../results/curated_result.csv')
-colors = mpl.cm.get_cmap('RdPu')(np.linspace(0.2, 1, 8))
+colors = mpl.cm.get_cmap('YlGn')(np.linspace(0.2, 1, 17))
 
-for j, i in enumerate(list(df['bits'].unique())):
-    plt.scatter(df[df['bits'] == i]['solution_count'], df[df['bits'] == i]['total_time'], label='{0} bits'.format(i), facecolors='none', edgecolors=colors[j], s=10)
-plt.ylabel('Time to complete')
+for j, i in enumerate(sorted(list(df['bits'].unique()))):
+    plt.scatter(df[df['bits'] == i]['solution_count'], df[df['bits'] == i]['total_time'], label='{0} bits'.format(i), facecolors='none', edgecolors=colors[j], s=8)
+plt.ylabel('Time to complete (s)')
 plt.xlabel('Solution count')
 plt.yscale('log')
 plt.xscale('log')
@@ -48,19 +49,13 @@ plt.title('Solution count vs time to complete on all bits')
 plt.savefig('../results/time_solution')
 plt.clf()
 
-def func_sqrt(x, a, b):
-    return a*np.sqrt(x) + 2**(-6)
-
-def func_lin(x, a, b):
-    return a*(x) + 2**(-6)
-
 '''satisfiability_x = []
 time_y = []
 for j, i in enumerate(list(df['bits'].unique())):
     #satisfiability_x += list(1/(df[df['bits'] == i]['solution_count']/2**i))
     #print('first',satisfiability_x)
     #time_y += list(df[df['bits'] == i]['total_time'])
-    plt.scatter(1/(df[df['bits'] == i]['solution_count']/2**i), df[df['bits'] == i]['total_time'], label='{0} bits'.format(i), facecolors='none', edgecolors=colors[j], s=10)
+    plt.scatter(1/(df[df['bits'] == i]['solution_count']/2**i), df[df['bits'] == i]['total_time'], label='{0} bits'.format(i), facecolors='none', edgecolors=colors[j], s=8)
 #plt.axline((4, 2), 5)
 #y = func(np.unique(satisfiability_x))
 #plt.plot(np.unique(satisfiability_x), y)
@@ -71,10 +66,30 @@ for j, i in enumerate(list(df['bits'].unique())):
 #plt.plot(np.unique(satisfiability_x), func1(np.unique(satisfiability_x), *popt))
 '''
 
+def func_sqrt(x, b):
+    return np.sqrt(x) + b
+
+def func_lin(x, b):
+    return x + b
+
+min_1_P = 0
+max_1_P = 0
 data_complexity_1_P = []
-for j, i in enumerate(list(df['bits'].unique())):
+for j, i in enumerate(sorted(list(df['bits'].unique()))):
     data_complexity_1_P.append({'bits': df[df['bits'] == i]['bits'], 'time':1/(df[df['bits'] == i]['solution_count']/2**i), '1_P':np.exp((df[df['bits'] == i]['treewidth']-1) * df[df['bits'] == i]['nodes'])})
-    plt.scatter(1/(df[df['bits'] == i]['solution_count']/2**i), np.exp((df[df['bits'] == i]['treewidth']-1) * df[df['bits'] == i]['nodes']), label='{0} bits'.format(i), facecolors='none', edgecolors=colors[j], s=10)
+    plt.scatter(1/(df[df['bits'] == i]['solution_count']/2**i), np.exp((df[df['bits'] == i]['treewidth']-1)) * df[df['bits'] == i]['nodes'], label='{0} bits'.format(i), facecolors='none', edgecolors=colors[j], s=8)
+    min_1_P_i = min(1/(df[df['bits'] == i]['solution_count']/2**i))
+    max_1_P_i = max(1/(df[df['bits'] == i]['solution_count']/2**i))
+    if min_1_P_i < min_1_P:
+        min_1_P = min_1_P_i
+    if max_1_P_i > max_1_P:
+        max_1_P = max_1_P_i
+
+x_axis = np.linspace(min_1_P, max_1_P, 2)
+y_axis_lin = func_lin(x_axis, 0)
+y_axis_sqrt = func_sqrt(x_axis, 0)
+plt.plot(x_axis, y_axis_lin, '--', label='$p = 1/P$', c='purple')
+#plt.plot(x_axis, y_axis_sqrt, '--', label='$p = 1/\\sqrt{P}$', c='orange')
 
 plt.ylabel('Time complexity')
 plt.xlabel('$\\frac{1}{p}$')
@@ -93,9 +108,9 @@ df_complexity_1_P = pd.DataFrame(data_complexity_1_P)
 df_complexity_1_P.to_csv('../results/complexity_1_P.csv')
 print(df_complexity_1_P.head().to_markdown())
 
-for j, i in enumerate(list(df['bits'].unique())):
-    plt.scatter(df[df['bits'] == i]['solution_count']/2**i, df[df['bits'] == i]['construction_time'], label='{0} bits'.format(i), facecolors='none', edgecolors=colors[j], s=10)
-plt.ylabel('Time to construct')
+for j, i in enumerate(sorted(list(df['bits'].unique()))):
+    plt.scatter(df[df['bits'] == i]['solution_count']/2**i, df[df['bits'] == i]['construction_time'], label='{0} bits'.format(i), facecolors='none', edgecolors=colors[j], s=8)
+plt.ylabel('Time to construct (s)')
 plt.xlabel('Satisfiability')
 plt.yscale('log')
 plt.xscale('log')
@@ -105,23 +120,23 @@ plt.title('Satisfiability vs time to construct on all bits')
 plt.savefig('../results/satisfiability_construction_time')
 plt.clf()
 
-for j, i in enumerate(list(df['bits'].unique())):
-    plt.scatter(1/(df[df['bits'] == i]['solution_count']/2**i), df[df['bits'] == i]['construction_time'], label='{0} bits'.format(i), facecolors='none', edgecolors=colors[j], s=10)
-plt.ylabel('Time to construct')
+for j, i in enumerate(sorted(list(df['bits'].unique()))):
+    plt.scatter(1/(df[df['bits'] == i]['solution_count']/2**i), df[df['bits'] == i]['construction_time'], label='{0} bits'.format(i), facecolors='none', edgecolors=colors[j], s=8)
+plt.ylabel('Time to construct (s)')
 plt.xlabel('$\\frac{1}{p}$')
 plt.yscale('log')
 plt.xscale('log')
-plt.xticks([4**(i+1) for i in range(9)], ['']+[4**(i+1) for i in range(1,9)])
-plt.yticks([2**(i-6) for i in range(6)], ['$2^{{ {0} }}$'.format(i-6) for i in range(6)])
+#plt.xticks([4**(i+1) for i in range(9)], ['']+[4**(i+1) for i in range(1,9)])
+#plt.yticks([2**(i-6) for i in range(6)], ['$2^{{ {0} }}$'.format(i-6) for i in range(6)])
 plt.grid()
 plt.legend()
 plt.title('Satisfiability vs time to construct on all bits')
 plt.savefig('../results/satisfiability_construction_time_2')
 plt.clf()
 
-for j, i in enumerate(list(df['bits'].unique())):
-    plt.scatter(df[df['bits'] == i]['solution_count']/2**i, df[df['bits'] == i]['tree_time'], label='{0} bits'.format(i), facecolors='none', edgecolors=colors[j], s=10)
-plt.ylabel('Tree time')
+for j, i in enumerate(sorted(list(df['bits'].unique()))):
+    plt.scatter(df[df['bits'] == i]['solution_count']/2**i, df[df['bits'] == i]['tree_time'], label='{0} bits'.format(i), facecolors='none', edgecolors=colors[j], s=8)
+plt.ylabel('Tree time (s)')
 plt.xlabel('Satisfiability')
 plt.yscale('log')
 plt.xscale('log')
@@ -131,23 +146,23 @@ plt.title('Satisfiability vs tree time on all bits')
 plt.savefig('../results/satisfiability_tree_time')
 plt.clf()
 
-for j, i in enumerate(list(df['bits'].unique())):
-    plt.scatter(1/(df[df['bits'] == i]['solution_count']/2**i), df[df['bits'] == i]['tree_time'], label='{0} bits'.format(i), facecolors='none', edgecolors=colors[j], s=10)
-plt.ylabel('Tree time')
+for j, i in enumerate(sorted(list(df['bits'].unique()))):
+    plt.scatter(1/(df[df['bits'] == i]['solution_count']/2**i), df[df['bits'] == i]['tree_time'], label='{0} bits'.format(i), facecolors='none', edgecolors=colors[j], s=8)
+plt.ylabel('Tree time (s)')
 plt.xlabel('$\\frac{1}{p}$')
 plt.yscale('log')
 plt.xscale('log')
-plt.xticks([4**(i+1) for i in range(9)], ['']+[4**(i+1) for i in range(1,9)])
-plt.yticks([2**(i-6) for i in range(6)], ['$2^{{ {0} }}$'.format(i-6) for i in range(6)])
+#plt.xticks([4**(i+1) for i in range(9)], ['']+[4**(i+1) for i in range(1,9)])
+#plt.yticks([2**(i-6) for i in range(6)], ['$2^{{ {0} }}$'.format(i-6) for i in range(6)])
 plt.grid()
 plt.legend()
 plt.title('Satisfiability vs tree time on all bits')
 plt.savefig('../results/satisfiability_tree_time_2')
 plt.clf()
 
-for j, i in enumerate(list(df['bits'].unique())):
-    plt.scatter(df[df['bits'] == i]['solution_count']/2**i, df[df['bits'] == i]['contraction_time'], label='{0} bits'.format(i), facecolors='none', edgecolors=colors[j], s=10)
-plt.ylabel('Time to contract')
+for j, i in enumerate(sorted(list(df['bits'].unique()))):
+    plt.scatter(df[df['bits'] == i]['solution_count']/2**i, df[df['bits'] == i]['contraction_time'], label='{0} bits'.format(i), facecolors='none', edgecolors=colors[j], s=8)
+plt.ylabel('Time to contract (s)')
 plt.xlabel('Satisfiability')
 plt.yscale('log')
 plt.xscale('log')
@@ -157,25 +172,58 @@ plt.title('Satisfiability vs time to contract on all bits')
 plt.savefig('../results/satisfiability_contraction_time')
 plt.clf()
 
-for j, i in enumerate(list(df['bits'].unique())):
-    plt.scatter(1/(df[df['bits'] == i]['solution_count']/2**i), df[df['bits'] == i]['contraction_time'], label='{0} bits'.format(i), facecolors='none', edgecolors=colors[j], s=10)
-plt.ylabel('Time to contract')
+for j, i in enumerate(sorted(list(df['bits'].unique()))):
+    plt.scatter(1/(df[df['bits'] == i]['solution_count']/2**i), df[df['bits'] == i]['contraction_time'], label='{0} bits'.format(i), facecolors='none', edgecolors=colors[j], s=8)
+plt.ylabel('Time to contract (s)')
 plt.xlabel('$\\frac{1}{p}$')
 plt.yscale('log')
 plt.xscale('log')
-plt.xticks([4**(i+1) for i in range(9)], ['']+[4**(i+1) for i in range(1,9)])
-plt.yticks([2**(i-6) for i in range(6)], ['$2^{{ {0} }}$'.format(i-6) for i in range(6)])
+#plt.xticks([4**(i+1) for i in range(9)], ['']+[4**(i+1) for i in range(1,9)])
+#plt.yticks([2**(i-6) for i in range(6)], ['$2^{{ {0} }}$'.format(i-6) for i in range(6)])
 plt.grid()
 plt.legend()
 plt.title('Satisfiability vs time to contract on all bits')
 plt.savefig('../results/satisfiability_contraction_time_2')
 plt.clf()
 
-for j, i in enumerate(list(df['bits'].unique())):
-    plt.scatter(df[df['bits'] == i]['edges']/df[df['bits'] == i]['nodes'], df[df['bits'] == i]['total_time'], label='{0} bits'.format(i), facecolors='none', edgecolors=colors[j], s=10)
+for j, i in enumerate(sorted(list(df['bits'].unique()))):
+    plt.scatter(df[df['bits'] == i]['solution_count']/2**i, df[df['bits'] == i]['total_time'], label='{0} bits'.format(i), facecolors='none', edgecolors=colors[j], s=8)
+plt.ylabel('Time to complete (s)')
+plt.xlabel('Satisfiability')
+plt.yscale('log')
+plt.xscale('log')
+plt.grid()
+plt.legend()
+plt.title('Satisfiability vs total time on all bits')
+plt.savefig('../results/satisfiability_total_time')
+plt.clf()
+
+for j, i in enumerate(sorted(list(df['bits'].unique()))):
+    plt.scatter(1/(df[df['bits'] == i]['solution_count']/2**i), df[df['bits'] == i]['total_time'], label='{0} bits'.format(i), facecolors='none', edgecolors=colors[j], s=8)
+
+x_axis = np.linspace(min_1_P, max_1_P, 2)
+y_axis_lin = func_lin(x_axis, 0)
+y_axis_sqrt = func_sqrt(x_axis, 0)
+#plt.plot(x_axis, y_axis_lin, '--', label='$p = 1/P$', c='purple')
+plt.plot(x_axis, y_axis_sqrt, '--', label='$p = 1/\\sqrt{P}$', c='orange')
+
+plt.ylabel('Time to complete (s)')
+plt.xlabel('$\\frac{1}{p}$')
+plt.yscale('log')
+plt.xscale('log')
+#plt.xticks([4**(i+1) for i in range(9)], ['']+[4**(i+1) for i in range(1,9)])
+#plt.yticks([2**(i-6) for i in range(6)], ['$2^{{ {0} }}$'.format(i-6) for i in range(6)])
+plt.grid()
+plt.legend()
+plt.title('Satisfiability vs total time on all bits')
+plt.savefig('../results/satisfiability_total_time_2')
+plt.clf()
+
+for j, i in enumerate(sorted(list(df['bits'].unique()))):
+    plt.scatter(df[df['bits'] == i]['edges']/df[df['bits'] == i]['nodes'], df[df['bits'] == i]['total_time'], label='{0} bits'.format(i), facecolors='none', edgecolors=colors[j], s=8)
 plt.axvline(3.8, color='black', linestyle='--')
 plt.axvline(4.26, color='black', linestyle='--')
-plt.ylabel('Time to complete')
+plt.ylabel('Time to complete (s)')
 plt.xlabel('Density')
 plt.yscale('log')
 plt.grid()
@@ -188,9 +236,9 @@ plt.clf()
 
 
 #for j, i in enumerate(list(df['bits'].unique())):
-#    plt.scatter(i, df[df['bits'] == i]['total_time'], label='{0} bits'.format(i), facecolors='none', edgecolors=colors[j], s=10)
+#    plt.scatter(i, df[df['bits'] == i]['total_time'], label='{0} bits'.format(i), facecolors='none', edgecolors=colors[j], s=8)
 
-for j, i in enumerate(list(df['bits'].unique())):
+for j, i in enumerate(sorted(list(df['bits'].unique()))):
     density = df[df['bits'] == i]['edges']/df[df['bits'] == i]['nodes']
     total_time = df[df['bits'] == i]['total_time']
     plt.plot(np.unique(density), np.poly1d(np.polyfit(density, total_time, 2))(np.unique(density)), label='{0} bits'.format(i))
